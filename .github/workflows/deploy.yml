@@ -25,13 +25,13 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: us-east-1
 
       - name: Verify AWS identity
         run: aws sts get-caller-identity
 
       - name: Deploy to Elastic Beanstalk
         run: |
-          eb init myapp --region ${{ secrets.AWS_REGION }}
+          eb init myapp --region us-east-1
           eb use Ebstest-env
           eb deploy
