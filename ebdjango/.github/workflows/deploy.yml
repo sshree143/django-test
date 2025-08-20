@@ -33,5 +33,5 @@ jobs:
       - name: Deploy to Elastic Beanstalk
         run: |
           eb init myapp --region ${{ secrets.AWS_REGION }}
-          eb use Ebstest-env
+          eb use myapp-env
           eb deploy
