@@ -2,7 +2,7 @@ name: Deploy to Elastic Beanstalk
 
 on:
   push:
-    branches: ["main"]  # or your deploy branch
+    branches: ["main"]   # change if your deploy branch is different
 
 jobs:
   deploy:
@@ -15,23 +15,20 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: "3.11"   # can be any version, just for EB CLI
 
       - name: Install EB CLI
-        run: pip install awsebcli --upgrade
+        run: pip install --upgrade awsebcli
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: us-east-1   # must match your EB environment
 
       - name: Verify AWS identity
         run: aws sts get-caller-identity
 
       - name: Deploy to Elastic Beanstalk
-        run: |
-          eb init myapp --region us-east-1
-          eb use Ebstest-env
-          eb deploy
+        run: eb deploy
