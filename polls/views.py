@@ -4,4 +4,4 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Updated webpage 1")
+    return HttpResponse("Updated webpage 2")
