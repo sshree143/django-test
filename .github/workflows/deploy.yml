@@ -15,7 +15,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"   # can be any version, just for EB CLI
+          python-version: "3.11"   # any supported version for EB CLI
 
       - name: Install EB CLI
         run: pip install --upgrade awsebcli
